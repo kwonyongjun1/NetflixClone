@@ -21,14 +21,12 @@ export default function Banner() {
         request.data.results[
             Math.floor(Math.random() * request.data.results.length)
         ].id;
-    console.log(movieId);
 
     const {data : movieDetail} = await axios.get(`movie/${movieId}`,{
       params: {append_to_response : "videos"}
     })
 
     setMovie(movieDetail);
-    console.log(movie);
   }
 
   // 영화 설명글 글자 제한하기
@@ -36,7 +34,6 @@ export default function Banner() {
     return str?.length > n ? str.substr(0, n-1) + "..." : str;
   }
   
-  console.log(movie);
   if(!isClicked){
     return (
       <header
