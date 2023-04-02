@@ -12,14 +12,17 @@ export default function Row({title,id,fetchURL,isLargeRow}) {
   const fetchMovieData = async () =>{
     const request = await axios.get(fetchURL);
     setMovies(request.data.results);
-    console.log(movies);
   }
 
   return (
     <section>
       <h2 className='row'>{title}</h2>
       <div className='slider'>
-        <div className='slider__arrow-left'>
+        <div className='slider__arrow-left'
+          onClick={()=>{
+            document.getElementById(id).scrollLeft -= window.innerWidth-80;
+          }}
+        >
           <span className='arrow'>
             {"<"}
           </span>
@@ -36,8 +39,14 @@ export default function Row({title,id,fetchURL,isLargeRow}) {
             />
           ))}
         </div>
-        <div className='slider__arrow-right'>
-            <span className='arrow'></span>
+        <div className='slider__arrow-right'
+          onClick={()=>{
+            document.getElementById(id).scrollLeft += window.innerWidth-80;
+          }}
+        >
+            <span className='arrow'>
+              {">"}
+            </span>
         </div>
       </div>
     </section>
